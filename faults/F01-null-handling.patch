@@ -1,0 +1,9 @@
+--- a/orders.py
++++ b/orders.py
+@@ -2,6 +2,4 @@
+ 
+ 
+ def normalize_status(status: str | None) -> str:
+-    if status is None:
+-        return "pending"
+     return status.lower()

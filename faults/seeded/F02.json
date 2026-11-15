@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "scenario_id": "F02",
+  "replacements": [
+    {
+      "path": "service.py",
+      "before": "sha256:d66b696031f18840c38c6582e9ec66a4a353cc944e0484ddc556f11afa0688a8",
+      "content": "\"\"\"Order business rules live here, not in the transport adapter.\"\"\"\n\nVALID_STATUSES = {\"pending\", \"paid\", \"cancelled\"}\n\n\ndef normalize_status(status: str | None) -> str:\n    value = status.lower()\n    if value not in VALID_STATUSES:\n        raise ValueError(\"unsupported status\")\n    return value\n"
+    }
+  ],
+  "simulation": null,
+  "variants": []
+}

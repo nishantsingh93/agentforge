@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.8, pytest-9.2.0, pluggy-1.7.0
+rootdir: /Users/nishantsingh/Documents/code/agentforge
+configfile: pyproject.toml
+collected 8 items
+
+tests/integration/test_sandbox_integration.py ....                       [ 50%]
+tests/integration/test_runtime_integration.py ....                       [100%]
+
+- generated xml file: /Users/nishantsingh/Documents/code/agentforge/docs/verification/AF-009-real-20261111T044000128589Z/integration.xml -
+============================== 8 passed in 8.07s ===============================

@@ -1,0 +1,7 @@
+import time
+import unittest
+
+
+class Slow(unittest.TestCase):
+    def test_timeout(self):
+        time.sleep(120)

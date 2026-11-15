@@ -1,0 +1,333 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.8, pytest-9.2.0, pluggy-1.7.0
+rootdir: /Users/nishantsingh/Documents/code/agentforge
+configfile: pyproject.toml
+collected 8 items
+
+tests/integration/test_sandbox_integration.py FFFF                       [ 50%]
+tests/integration/test_runtime_integration.py FFFF                       [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_real_isolation_and_repeat_runs ______________________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x106fd5940>
+tmp_path = PosixPath('/private/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/pytest-of-nishantsingh/pytest-36/test_real_isolation_and_repeat0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1070c8640>
+
+    def test_real_isolation_and_repeat_runs(
+        sandbox: SandboxRunner, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        marker = tmp_path / "synthetic-host-marker"
+        marker.write_text("owned-synthetic-marker")
+        monkeypatch.setenv("AGENTFORGE_SYNTHETIC_SECRET", "synthetic-only")
+        extra = (
+            "\nclass HostProbe(unittest.TestCase):\n"
+            "    def test_host_marker(self):\n"
+            f"        self.assertFalse(Path({str(marker)!r}).exists())\n"
+        ).encode()
+        snapshot = owned_snapshot("isolation.py.txt", extra)
+>       first = sandbox.run(snapshot)
+                ^^^^^^^^^^^^^^^^^^^^^
+
+tests/integration/test_sandbox_integration.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/agentforge/sandbox/runner.py:267: in run
+    self._preflight(prefix)
+src/agentforge/sandbox/runner.py:220: in _preflight
+    daemon = self._require([*prefix, "info", "--format", "{{.OSType}}"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <agentforge.sandbox.runner.SandboxRunner object at 0x106fd5940>
+argv = ['/opt/homebrew/bin/docker', '--host', 'unix:///Users/nishantsingh/.colima-agentforge/agentforge/docker.sock', '--config', '/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/agentforge-docker-config-31yrqz8w', 'info', ...]
+
+    def _require(self, argv: list[str]) -> ProcessResult:
+        try:
+            result = self.transport.execute(argv, b"", 5.0)
+        except OSError as error:
+            raise SandboxUnavailable("local Docker unavailable") from error
+        if result.status != "completed" or result.exit_code != 0:
+>           raise SandboxUnavailable("Docker preflight failed; no fixture execution")
+E           agentforge.sandbox.runner.SandboxUnavailable: Docker preflight failed; no fixture execution
+
+src/agentforge/sandbox/runner.py:216: SandboxUnavailable
+____________________ test_real_timeout_and_verified_cleanup ____________________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x1070ad6d0>
+
+    def test_real_timeout_and_verified_cleanup(sandbox: SandboxRunner) -> None:
+>       result = sandbox.run(owned_snapshot("timeout.py.txt"))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/integration/test_sandbox_integration.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/agentforge/sandbox/runner.py:267: in run
+    self._preflight(prefix)
+src/agentforge/sandbox/runner.py:220: in _preflight
+    daemon = self._require([*prefix, "info", "--format", "{{.OSType}}"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <agentforge.sandbox.runner.SandboxRunner object at 0x1070ad6d0>
+argv = ['/opt/homebrew/bin/docker', '--host', 'unix:///Users/nishantsingh/.colima-agentforge/agentforge/docker.sock', '--config', '/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/agentforge-docker-config-k04ja6d6', 'info', ...]
+
+    def _require(self, argv: list[str]) -> ProcessResult:
+        try:
+            result = self.transport.execute(argv, b"", 5.0)
+        except OSError as error:
+            raise SandboxUnavailable("local Docker unavailable") from error
+        if result.status != "completed" or result.exit_code != 0:
+>           raise SandboxUnavailable("Docker preflight failed; no fixture execution")
+E           agentforge.sandbox.runner.SandboxUnavailable: Docker preflight failed; no fixture execution
+
+src/agentforge/sandbox/runner.py:216: SandboxUnavailable
+_____________ test_real_sandbox_output_is_sanitized_and_replayable _____________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x1070ae850>
+tmp_path = PosixPath('/private/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/pytest-of-nishantsingh/pytest-36/test_real_sandbox_output_is_sa0')
+
+    def test_real_sandbox_output_is_sanitized_and_replayable(
+        sandbox: SandboxRunner, tmp_path: Path
+    ) -> None:
+        from agentforge.core.evidence import EvidenceCollector
+        from agentforge.core.trace import replay_trace
+    
+        extra = (
+            b"\nclass EvidenceProbe(unittest.TestCase):\n"
+            b"    def test_failure(self):\n"
+            b"        print('password=synthetic-integration-secret')\n"
+            b"        self.fail('owned intentional failure')\n"
+        )
+>       result = sandbox.run(owned_snapshot("isolation.py.txt", extra))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/integration/test_sandbox_integration.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/agentforge/sandbox/runner.py:267: in run
+    self._preflight(prefix)
+src/agentforge/sandbox/runner.py:220: in _preflight
+    daemon = self._require([*prefix, "info", "--format", "{{.OSType}}"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <agentforge.sandbox.runner.SandboxRunner object at 0x1070ae850>
+argv = ['/opt/homebrew/bin/docker', '--host', 'unix:///Users/nishantsingh/.colima-agentforge/agentforge/docker.sock', '--config', '/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/agentforge-docker-config-186ox427', 'info', ...]
+
+    def _require(self, argv: list[str]) -> ProcessResult:
+        try:
+            result = self.transport.execute(argv, b"", 5.0)
+        except OSError as error:
+            raise SandboxUnavailable("local Docker unavailable") from error
+        if result.status != "completed" or result.exit_code != 0:
+>           raise SandboxUnavailable("Docker preflight failed; no fixture execution")
+E           agentforge.sandbox.runner.SandboxUnavailable: Docker preflight failed; no fixture execution
+
+src/agentforge/sandbox/runner.py:216: SandboxUnavailable
+______________________ test_real_gateway_checks_and_audit ______________________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x1070ca650>
+tmp_path = PosixPath('/private/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/pytest-of-nishantsingh/pytest-36/test_real_gateway_checks_and_a0')
+
+    def test_real_gateway_checks_and_audit(sandbox: SandboxRunner, tmp_path: Path) -> None:
+        from agentforge.core.evidence import EvidenceCollector
+        from agentforge.core.schemas import ActionRequest, Arguments, Impact
+        from agentforge.core.trace import replay_trace
+        from agentforge.guardrails.approvals import ApprovalRegistry
+        from agentforge.guardrails.executor import FixtureExecutor
+        from agentforge.guardrails.gateway import Gateway
+        from agentforge.guardrails.taxonomy import PolicyContext, RiskTier
+    
+        extra = (
+            b"\nclass GatewayProbe(unittest.TestCase):\n"
+            b"    def test_failure(self):\n"
+            b"        print('password=synthetic-gateway-secret')\n"
+            b"        self.fail('intentional owned failure')\n"
+        )
+        executor = FixtureExecutor(owned_snapshot("isolation.py.txt", extra), sandbox)
+        collector = EvidenceCollector(tmp_path, "gateway-run")
+        trusted = PolicyContext(
+            schema_version="1",
+            run_id="gateway-run",
+            scenario_id="F01",
+            environment="sandbox",
+            allowed_files=("test_probe.py",),
+            allowed_services=(),
+            allowed_checks=("unit_tests",),
+            protected_paths=(),
+            minimum_risk=RiskTier.LOW,
+            isolation_verified=True,
+            tests_passed=None,
+            baseline_healthy=None,
+            rollback_ready=None,
+        )
+        request = ActionRequest(
+            schema_version="1",
+            action_id="check-1",
+            type="run_check",
+            arguments=Arguments(check="unit_tests"),
+            target="unit_tests",
+            environment="sandbox",
+            requested_capabilities=("check",),
+            blast_radius="single_file",
+            reversibility="reversible",
+            impact=Impact(availability="none", data="none", revenue="none", security="none"),
+            preconditions=(),
+            approval_token=None,
+            idempotency_key="check-1",
+            dry_run=False,
+        )
+        try:
+            boundary = Gateway(
+                scenario_id="F01",
+                context=lambda: trusted,
+                executor=executor,
+                trace=collector.trace,
+                approvals=ApprovalRegistry(),
+            )
+            receipt = boundary.submit(request)
+>           assert receipt.state == "failed"
+E           AssertionError: assert 'uncertain' == 'failed'
+E             
+E             - failed
+E             + uncertain
+
+tests/integration/test_sandbox_integration.py:156: AssertionError
+_____________________ test_real_runtime_check[unit_tests] ______________________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x1070cbce0>
+check = 'unit_tests'
+
+    @pytest.mark.parametrize("check", ["unit_tests", "lint", "typecheck", "build"])
+    def test_real_runtime_check(sandbox: SandboxRunner, check: str) -> None:  # noqa: F811
+>       passed = sandbox.run(command_fixture(check, False), check)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/integration/test_runtime_integration.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/agentforge/sandbox/runner.py:267: in run
+    self._preflight(prefix)
+src/agentforge/sandbox/runner.py:220: in _preflight
+    daemon = self._require([*prefix, "info", "--format", "{{.OSType}}"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <agentforge.sandbox.runner.SandboxRunner object at 0x1070cbce0>
+argv = ['/opt/homebrew/bin/docker', '--host', 'unix:///Users/nishantsingh/.colima-agentforge/agentforge/docker.sock', '--config', '/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/agentforge-docker-config-weesw89x', 'info', ...]
+
+    def _require(self, argv: list[str]) -> ProcessResult:
+        try:
+            result = self.transport.execute(argv, b"", 5.0)
+        except OSError as error:
+            raise SandboxUnavailable("local Docker unavailable") from error
+        if result.status != "completed" or result.exit_code != 0:
+>           raise SandboxUnavailable("Docker preflight failed; no fixture execution")
+E           agentforge.sandbox.runner.SandboxUnavailable: Docker preflight failed; no fixture execution
+
+src/agentforge/sandbox/runner.py:216: SandboxUnavailable
+________________________ test_real_runtime_check[lint] _________________________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x1070b7530>
+check = 'lint'
+
+    @pytest.mark.parametrize("check", ["unit_tests", "lint", "typecheck", "build"])
+    def test_real_runtime_check(sandbox: SandboxRunner, check: str) -> None:  # noqa: F811
+>       passed = sandbox.run(command_fixture(check, False), check)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/integration/test_runtime_integration.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/agentforge/sandbox/runner.py:267: in run
+    self._preflight(prefix)
+src/agentforge/sandbox/runner.py:220: in _preflight
+    daemon = self._require([*prefix, "info", "--format", "{{.OSType}}"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <agentforge.sandbox.runner.SandboxRunner object at 0x1070b7530>
+argv = ['/opt/homebrew/bin/docker', '--host', 'unix:///Users/nishantsingh/.colima-agentforge/agentforge/docker.sock', '--config', '/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/agentforge-docker-config-5_5bn9rp', 'info', ...]
+
+    def _require(self, argv: list[str]) -> ProcessResult:
+        try:
+            result = self.transport.execute(argv, b"", 5.0)
+        except OSError as error:
+            raise SandboxUnavailable("local Docker unavailable") from error
+        if result.status != "completed" or result.exit_code != 0:
+>           raise SandboxUnavailable("Docker preflight failed; no fixture execution")
+E           agentforge.sandbox.runner.SandboxUnavailable: Docker preflight failed; no fixture execution
+
+src/agentforge/sandbox/runner.py:216: SandboxUnavailable
+______________________ test_real_runtime_check[typecheck] ______________________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x10762b570>
+check = 'typecheck'
+
+    @pytest.mark.parametrize("check", ["unit_tests", "lint", "typecheck", "build"])
+    def test_real_runtime_check(sandbox: SandboxRunner, check: str) -> None:  # noqa: F811
+>       passed = sandbox.run(command_fixture(check, False), check)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/integration/test_runtime_integration.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/agentforge/sandbox/runner.py:267: in run
+    self._preflight(prefix)
+src/agentforge/sandbox/runner.py:220: in _preflight
+    daemon = self._require([*prefix, "info", "--format", "{{.OSType}}"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <agentforge.sandbox.runner.SandboxRunner object at 0x10762b570>
+argv = ['/opt/homebrew/bin/docker', '--host', 'unix:///Users/nishantsingh/.colima-agentforge/agentforge/docker.sock', '--config', '/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/agentforge-docker-config-262jmdww', 'info', ...]
+
+    def _require(self, argv: list[str]) -> ProcessResult:
+        try:
+            result = self.transport.execute(argv, b"", 5.0)
+        except OSError as error:
+            raise SandboxUnavailable("local Docker unavailable") from error
+        if result.status != "completed" or result.exit_code != 0:
+>           raise SandboxUnavailable("Docker preflight failed; no fixture execution")
+E           agentforge.sandbox.runner.SandboxUnavailable: Docker preflight failed; no fixture execution
+
+src/agentforge/sandbox/runner.py:216: SandboxUnavailable
+________________________ test_real_runtime_check[build] ________________________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x1076d0380>
+check = 'build'
+
+    @pytest.mark.parametrize("check", ["unit_tests", "lint", "typecheck", "build"])
+    def test_real_runtime_check(sandbox: SandboxRunner, check: str) -> None:  # noqa: F811
+>       passed = sandbox.run(command_fixture(check, False), check)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/integration/test_runtime_integration.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/agentforge/sandbox/runner.py:267: in run
+    self._preflight(prefix)
+src/agentforge/sandbox/runner.py:220: in _preflight
+    daemon = self._require([*prefix, "info", "--format", "{{.OSType}}"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <agentforge.sandbox.runner.SandboxRunner object at 0x1076d0380>
+argv = ['/opt/homebrew/bin/docker', '--host', 'unix:///Users/nishantsingh/.colima-agentforge/agentforge/docker.sock', '--config', '/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/agentforge-docker-config-ihajq4ex', 'info', ...]
+
+    def _require(self, argv: list[str]) -> ProcessResult:
+        try:
+            result = self.transport.execute(argv, b"", 5.0)
+        except OSError as error:
+            raise SandboxUnavailable("local Docker unavailable") from error
+        if result.status != "completed" or result.exit_code != 0:
+>           raise SandboxUnavailable("Docker preflight failed; no fixture execution")
+E           agentforge.sandbox.runner.SandboxUnavailable: Docker preflight failed; no fixture execution
+
+src/agentforge/sandbox/runner.py:216: SandboxUnavailable
+- generated xml file: /Users/nishantsingh/Documents/code/agentforge/docs/verification/AF-009-real-20261110T194912141474Z/integration.xml -
+=========================== short test summary info ============================
+FAILED tests/integration/test_sandbox_integration.py::test_real_isolation_and_repeat_runs
+FAILED tests/integration/test_sandbox_integration.py::test_real_timeout_and_verified_cleanup
+FAILED tests/integration/test_sandbox_integration.py::test_real_sandbox_output_is_sanitized_and_replayable
+FAILED tests/integration/test_sandbox_integration.py::test_real_gateway_checks_and_audit
+FAILED tests/integration/test_runtime_integration.py::test_real_runtime_check[unit_tests]
+FAILED tests/integration/test_runtime_integration.py::test_real_runtime_check[lint]
+FAILED tests/integration/test_runtime_integration.py::test_real_runtime_check[typecheck]
+FAILED tests/integration/test_runtime_integration.py::test_real_runtime_check[build]
+============================== 8 failed in 0.30s ===============================

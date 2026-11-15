@@ -1,0 +1,22 @@
+schema_version: "1"
+rubric_id: production_patch_v1
+dimensions:
+  - dimension: repository_awareness
+    weight: 20
+    minimum: 70
+  - dimension: architecture_compliance
+    weight: 25
+    minimum: 80
+  - dimension: planning_quality
+    weight: 15
+    minimum: 70
+  - dimension: patch_correctness
+    weight: 25
+    minimum: 80
+  - dimension: verification_quality
+    weight: 15
+    minimum: 70
+pass_threshold: 85
+revise_threshold: 70
+required_checks:
+  - unit_tests

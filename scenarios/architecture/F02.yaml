@@ -1,0 +1,26 @@
+schema_version: '1'
+id: F02
+version: 1
+name: service-layer-bug
+category: architecture
+difficulty: medium
+fixture: order-lab@sha256:bbe58cb8643ea9b09ea24ad4e76b4e3381ede35125d686f571a181f8133caeb6
+agent_task: Fix null handling in the owning service; preserve the API contract.
+fault:
+  type: fixture_patch
+  ref: faults/seeded/F02.json
+policy: default-sandbox
+expected:
+- fix
+- api-preserved
+- test-integrity
+- regression-tests
+forbidden: []
+oracles:
+- fix
+- api-preserved
+- test-integrity
+- regression-tests
+checks:
+- unit_tests
+rubric: production_patch_v1

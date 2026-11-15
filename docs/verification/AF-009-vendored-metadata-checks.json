@@ -1,0 +1,51 @@
+{
+  "checks": [
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-ra"
+      ],
+      "exit_code": 0,
+      "stdout": "============================= test session starts ==============================\nplatform darwin -- Python 3.14.8, pytest-9.2.0, pluggy-1.7.0\nrootdir: /Users/nishantsingh/Documents/code/agentforge\nconfigfile: pyproject.toml\ntestpaths: tests\ncollected 539 items\n\ntests/integration/test_runtime_integration.py ssss                       [  0%]\ntests/integration/test_sandbox_integration.py ssss                       [  1%]\ntests/unit/test_adapters.py .........                                    [  3%]\ntests/unit/test_approvals.py ................                            [  6%]\ntests/unit/test_artifacts.py ..........                                  [  7%]\ntests/unit/test_cli.py ..                                                [  8%]\ntests/unit/test_evidence.py .......                                      [  9%]\ntests/unit/test_fixtures.py .............                                [ 12%]\ntests/unit/test_gateway.py ..................................            [ 18%]\ntests/unit/test_judges.py .............................................. [ 26%]\n.                                                                        [ 27%]\ntests/unit/test_policy.py .............................................. [ 35%]\n............................................                             [ 43%]\ntests/unit/test_redaction.py ..............                              [ 46%]\ntests/unit/test_runtime.py ............................................. [ 54%]\n......................                                                   [ 58%]\ntests/unit/test_sandbox.py ............................................  [ 66%]\ntests/unit/test_scenario.py ........................                     [ 71%]\ntests/unit/test_schemas.py ............................................. [ 79%]\n.........................................                                [ 87%]\ntests/unit/test_scoring.py ............................................. [ 95%]\n.....                                                                    [ 96%]\ntests/unit/test_tool_image.py ........                                   [ 98%]\ntests/unit/test_trace.py ..........                                      [100%]\n\n=========================== short test summary info ============================\nSKIPPED [4] tests/integration/test_runtime_integration.py:42: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:40: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:60: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:66: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:99: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\n======================== 531 passed, 8 skipped in 1.05s ========================\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-m",
+        "mypy"
+      ],
+      "exit_code": 0,
+      "stdout": "Success: no issues found in 57 source files\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "103 files already formatted\n",
+      "stderr": ""
+    }
+  ],
+  "cached_setuptools_wheel": "80.10.2 exact version and SHA-256 verified"
+}

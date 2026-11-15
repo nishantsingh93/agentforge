@@ -1,0 +1,14 @@
+{
+  "ticket": "AF-014",
+  "integration_verified": true,
+  "tests": 3,
+  "failures": 0,
+  "skipped": 0,
+  "exit_code": 0,
+  "files": {
+    "docs/verification/AF-014-real-20261112T193127819418Z/result.json": "9d9d4bb9ad80a4ed311d69af9a5a604019e6d61e76281f17695eadcd690d2ceb",
+    "docs/verification/AF-014-real-20261112T193127819418Z/pytest.log": "756fd48d40e0a81bd196fa2f3308b5dfcfcbb124a7c7736716aefc2bb7001e53",
+    "docs/verification/AF-014-real-20261112T193127819418Z/integration.xml": "e1c25bae80b713cfd1544988be35b1db607b5c2234a56e0fda6e98694897314c"
+  },
+  "remaining": "Package build remains unverified; dist artifacts predate AF-014."
+}

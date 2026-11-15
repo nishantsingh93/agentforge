@@ -1,0 +1,55 @@
+{
+  "workflow_matches_approved_patch": true,
+  "manifest_license_metadata": "verified",
+  "shell_syntax": [
+    {
+      "step": "Install reviewed project dependencies",
+      "exit_code": 0
+    },
+    {
+      "step": "Tests without Docker",
+      "exit_code": 0
+    },
+    {
+      "step": "Static checks and package build",
+      "exit_code": 0
+    },
+    {
+      "step": "Offline benchmark artifacts",
+      "exit_code": 0
+    },
+    {
+      "step": "run",
+      "exit_code": 0
+    },
+    {
+      "step": "Provision reviewed tooling image on disposable hosted runner",
+      "exit_code": 0
+    },
+    {
+      "step": "Real integrations with no skips",
+      "exit_code": 0
+    },
+    {
+      "step": "Actual offline smoke and reports",
+      "exit_code": 0
+    },
+    {
+      "step": "run",
+      "exit_code": 0
+    },
+    {
+      "step": "Audit installed dependencies without automatic fixes",
+      "exit_code": 0
+    }
+  ],
+  "embedded_python": "parsed",
+  "wheel_license_and_sources": "verified",
+  "hosted_ci": "not run",
+  "sha256": {
+    ".github/workflows/ci.yml": "282eccb9f4492b0ba5df47c5cbe0fab0630d26caae5da8810f5b059c5a46dc5f",
+    "pyproject.toml": "cbb56de0d99f46790ffd0f00769498b4432002c47f782aa78a8a0d0eb2150f28",
+    "dist/agentforge-0.1.0.dev0.tar.gz": "b58af7449950c5c62caf7ca1adef6692f612d2170208b90de847d5ebcdd17c73",
+    "dist/agentforge-0.1.0.dev0-py3-none-any.whl": "5bbf268b911a207aaf5cc46d5c25e375f2d0de0afddb768fe77ab6b0c7395d7f"
+  }
+}

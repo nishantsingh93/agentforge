@@ -1,0 +1,20 @@
+{
+  "source": "docs/verification/AF-009-real-20261110T195309295443Z",
+  "total": 8,
+  "passed": [
+    "test_real_isolation_and_repeat_runs",
+    "test_real_timeout_and_verified_cleanup",
+    "test_real_sandbox_output_is_sanitized_and_replayable",
+    "test_real_gateway_checks_and_audit",
+    "test_real_runtime_check[unit_tests]"
+  ],
+  "failed": [
+    "test_real_runtime_check[lint]",
+    "test_real_runtime_check[typecheck]",
+    "test_real_runtime_check[build]"
+  ],
+  "skipped": 0,
+  "af008_required_cases_verified": true,
+  "af009_verified": false,
+  "reason": "Container image missing ruff, mypy, build; no tests weakened."
+}

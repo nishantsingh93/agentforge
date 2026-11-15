@@ -1,0 +1,1 @@
+{"cause":"service.py normalizes None without a guard","disproven":"API serialization","evidence":["incident.txt","service.py","api.py"]}

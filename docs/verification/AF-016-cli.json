@@ -1,0 +1,45 @@
+[
+  {
+    "command": [
+      ".venv/bin/agentforge",
+      "benchmark",
+      "export",
+      "--model",
+      "fixture/pinned-v1",
+      "--split",
+      "holdout"
+    ],
+    "exit_code": 0,
+    "output_file": "runs/benchmark-af016/blind.jsonl",
+    "sha256": "9abcd2114fb2250eaff80d6c1dc5605b7fd0b416bac007bd121a67dd6ee4de02",
+    "stderr": ""
+  },
+  {
+    "command": [
+      ".venv/bin/agentforge",
+      "benchmark",
+      "run",
+      "--offline",
+      "--split",
+      "all"
+    ],
+    "exit_code": 0,
+    "output_file": "runs/benchmark-af016/offline.jsonl",
+    "sha256": "68f265550a3aa804fa72aa6f53f3dd8ca2a292f5eb6eaf97f5e8ffe809b366ee",
+    "stderr": ""
+  },
+  {
+    "command": [
+      ".venv/bin/agentforge",
+      "benchmark",
+      "score",
+      "runs/benchmark-af016/offline.jsonl",
+      "--split",
+      "all"
+    ],
+    "exit_code": 0,
+    "output_file": "runs/benchmark-af016/report.json",
+    "sha256": "6bfa4d9dc34bb99e4b3ded4eb2998fb767ad28820b1f6765e4aae349b33686d2",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "source": "runs/local-sandbox-setup/20261109T174139780721Z",
+  "reviewed": "2026-11-09",
+  "result": "2 real integration tests passed; no failures/errors/skips",
+  "artifacts": {
+    "result.json": "2c9901374e6b0bd50f7f94a5af22ed7aa898e621bd905ff3f8b86441f666b5e9",
+    "settings.json": "27f9de04f3e89751a02af97e9dd8a01497b5beb75b06b4f53fbf2b56903f9583",
+    "commands.json": "af3992f0f8dca4313e793f4482ea390b4489ae404ae2acc0b3bf605c6b92d557",
+    "integration.xml": "2ec63fd4e8fd84ee24baa2f0486141bfea1d44ea435726d360338bfd0d83bf59",
+    "command-06.log": "c6025a01ca120ba723606206eb7e8d5270afe25bc622cc8266a93de7c83149a0"
+  }
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="0.130" timestamp="2026-11-12T11:37:26.434551-08:00" hostname="Rosenrot-MacBook-Pro.local"><testcase classname="tests.integration.test_reporting_integration" name="test_real_offline_report" time="0.041"><failure message="AssertionError: Docker unavailable: Docker preflight failed; no fixture execution&#10;  &#10;assert 3 == 4&#10; +  where 3 = &lt;Result SystemExit(3)&gt;.exit_code">sandbox = &lt;agentforge.sandbox.runner.SandboxRunner object at 0x10b759be0&gt;
+tmp_path = PosixPath('/private/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/pytest-of-nishantsingh/pytest-13/test_real_offline_report0')
+
+    def test_real_offline_report(sandbox: SandboxRunner, tmp_path: Path) -&gt; None:  # noqa: F811
+&gt;       suite = invoke(sandbox, tmp_path)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/integration/test_reporting_integration.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+engine = &lt;agentforge.sandbox.runner.SandboxRunner object at 0x10b759be0&gt;
+destination = PosixPath('/private/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/pytest-of-nishantsingh/pytest-13/test_real_offline_report0')
+flawed = False
+
+    def invoke(engine: SandboxRunner, destination: Path, flawed: bool = False) -&gt; SuiteResult:
+        result = CliRunner().invoke(
+            app,
+            [
+                "run",
+                "--suite",
+                "smoke",
+                "--offline",
+                "--root",
+                str(ROOT),
+                "--runs-root",
+                str(destination),
+                "--docker-host",
+                engine.config.docker_host,
+                "--image",
+                engine.config.image,
+                "--agent",
+                "demo-patcher-flawed" if flawed else "demo-patcher",
+            ],
+        )
+&gt;       assert result.exit_code == (1 if flawed else 4), result.output
+E       AssertionError: Docker unavailable: Docker preflight failed; no fixture execution
+E         
+E       assert 3 == 4
+E        +  where 3 = &lt;Result SystemExit(3)&gt;.exit_code
+
+tests/integration/test_run_integration.py:36: AssertionError</failure></testcase></testsuite></testsuites>

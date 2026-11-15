@@ -1,0 +1,64 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.8, pytest-9.2.0, pluggy-1.7.0
+rootdir: /Users/nishantsingh/Documents/code/agentforge
+configfile: pyproject.toml
+collected 8 items
+
+tests/integration/test_sandbox_integration.py ....                       [ 50%]
+tests/integration/test_runtime_integration.py .FFF                       [100%]
+
+=================================== FAILURES ===================================
+________________________ test_real_runtime_check[lint] _________________________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x10bc031d0>
+check = 'lint'
+
+    @pytest.mark.parametrize("check", ["unit_tests", "lint", "typecheck", "build"])
+    def test_real_runtime_check(sandbox: SandboxRunner, check: str) -> None:  # noqa: F811
+        passed = sandbox.run(command_fixture(check, False), check)
+        assert passed.check == check and passed.status == "completed"
+>       assert passed.exit_code == 0, (passed.stdout, passed.stderr)
+E       AssertionError: ('', '/usr/local/bin/python: No module named ruff
+E         ')
+E       assert 1 == 0
+E        +  where 1 = ToolResult(command_id='agentforge-c1148ada6df84dbba00e6e26ccb1a207', check='lint', status='completed', exit_code=1, stdout='', stderr='/usr/local/bin/python: No module named ruff\n', duration_seconds=0.2088721249892842).exit_code
+
+tests/integration/test_runtime_integration.py:46: AssertionError
+______________________ test_real_runtime_check[typecheck] ______________________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x10c10e140>
+check = 'typecheck'
+
+    @pytest.mark.parametrize("check", ["unit_tests", "lint", "typecheck", "build"])
+    def test_real_runtime_check(sandbox: SandboxRunner, check: str) -> None:  # noqa: F811
+        passed = sandbox.run(command_fixture(check, False), check)
+        assert passed.check == check and passed.status == "completed"
+>       assert passed.exit_code == 0, (passed.stdout, passed.stderr)
+E       AssertionError: ('', '/usr/local/bin/python: No module named mypy
+E         ')
+E       assert 1 == 0
+E        +  where 1 = ToolResult(command_id='agentforge-e53ef8652f19440abf7552f906b84856', check='typecheck', status='completed', exit_code=1, stdout='', stderr='/usr/local/bin/python: No module named mypy\n', duration_seconds=0.19854149999446236).exit_code
+
+tests/integration/test_runtime_integration.py:46: AssertionError
+________________________ test_real_runtime_check[build] ________________________
+
+sandbox = <agentforge.sandbox.runner.SandboxRunner object at 0x10c10e7a0>
+check = 'build'
+
+    @pytest.mark.parametrize("check", ["unit_tests", "lint", "typecheck", "build"])
+    def test_real_runtime_check(sandbox: SandboxRunner, check: str) -> None:  # noqa: F811
+        passed = sandbox.run(command_fixture(check, False), check)
+        assert passed.check == check and passed.status == "completed"
+>       assert passed.exit_code == 0, (passed.stdout, passed.stderr)
+E       AssertionError: ('', '/usr/local/bin/python: No module named build
+E         ')
+E       assert 1 == 0
+E        +  where 1 = ToolResult(command_id='agentforge-6bbaa85b2c724306bfb3050e4fe11c56', check='build', status='completed', exit_code=1, stdout='', stderr='/usr/local/bin/python: No module named build\n', duration_seconds=0.20172954100416973).exit_code
+
+tests/integration/test_runtime_integration.py:46: AssertionError
+- generated xml file: /Users/nishantsingh/Documents/code/agentforge/docs/verification/AF-009-real-20261110T195309295443Z/integration.xml -
+=========================== short test summary info ============================
+FAILED tests/integration/test_runtime_integration.py::test_real_runtime_check[lint]
+FAILED tests/integration/test_runtime_integration.py::test_real_runtime_check[typecheck]
+FAILED tests/integration/test_runtime_integration.py::test_real_runtime_check[build]
+========================= 3 failed, 5 passed in 7.47s ==========================

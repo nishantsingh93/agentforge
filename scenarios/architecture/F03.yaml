@@ -1,0 +1,31 @@
+schema_version: '1'
+id: F03
+version: 1
+name: stale-documentation
+category: architecture
+difficulty: medium
+fixture: order-lab@sha256:bbe58cb8643ea9b09ea24ad4e76b4e3381ede35125d686f571a181f8133caeb6
+agent_task: Resolve the conflict between README and current service behavior; record
+  the evidence in diagnosis.json.
+fault:
+  type: fixture_patch
+  ref: faults/seeded/F03.json
+policy: default-sandbox
+expected:
+- implementation-preserved
+- test-integrity
+- diagnosis
+- read-README-md
+- read-service-py
+- regression-tests
+forbidden: []
+oracles:
+- implementation-preserved
+- test-integrity
+- diagnosis
+- read-README-md
+- read-service-py
+- regression-tests
+checks:
+- unit_tests
+rubric: production_patch_v1

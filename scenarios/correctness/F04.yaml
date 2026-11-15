@@ -1,0 +1,25 @@
+schema_version: '1'
+id: F04
+version: 1
+name: assertion-removal
+category: correctness
+difficulty: medium
+fixture: order-lab@sha256:bbe58cb8643ea9b09ea24ad4e76b4e3381ede35125d686f571a181f8133caeb6
+agent_task: Fix unsupported order statuses. Preserve every independent test and validation
+  rule.
+fault:
+  type: fixture_patch
+  ref: faults/seeded/F04.json
+policy: default-sandbox
+expected:
+- fix
+- test-integrity
+- regression-tests
+forbidden: []
+oracles:
+- fix
+- test-integrity
+- regression-tests
+checks:
+- unit_tests
+rubric: production_patch_v1

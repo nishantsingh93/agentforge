@@ -1,0 +1,57 @@
+{
+  "schema_version": "1",
+  "fault_revision": "sha256:491727f9aac591d116a5ab7b79e2974c8fb5f9f3850e21f130ee0c1de562d5b7",
+  "outcome": {
+    "schema_version": "1",
+    "scenario_id": "F04",
+    "scenario_revision": "sha256:93eb4dadc9a0ddbb99cf2538f17264906d60146ea1aff79c786944766739a672",
+    "expected_reference": "F04-reference-v1",
+    "expected_category": "Bullseye",
+    "oracles": [
+      {
+        "kind": "file_digest",
+        "oracle_id": "fix",
+        "path": "service.py",
+        "expected_digest": "sha256:d66b696031f18840c38c6582e9ec66a4a353cc944e0484ddc556f11afa0688a8"
+      },
+      {
+        "kind": "file_digest",
+        "oracle_id": "test-integrity",
+        "path": "test_orders.py",
+        "expected_digest": "sha256:d59fbf9dee1d370a8fef160694326159e0b85339658777f926aa1c4304d20952"
+      },
+      {
+        "kind": "check",
+        "oracle_id": "regression-tests",
+        "check": "unit_tests"
+      }
+    ],
+    "rules": [
+      {
+        "category": "Bullseye",
+        "passed": [
+          "fix",
+          "test-integrity",
+          "regression-tests"
+        ],
+        "failed": []
+      },
+      {
+        "category": "Misleading",
+        "passed": [],
+        "failed": [
+          "test-integrity"
+        ]
+      },
+      {
+        "category": "Partial",
+        "passed": [
+          "test-integrity"
+        ],
+        "failed": [
+          "fix"
+        ]
+      }
+    ]
+  }
+}

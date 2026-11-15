@@ -1,0 +1,18 @@
+{
+  "schema_version": "1",
+  "scenario_id": "F01",
+  "replacements": [
+    {
+      "path": "orders.py",
+      "before": "sha256:6ce809e96511bd43347d01dea888e6130ad426c29668e4dd62ae88056c8e8c2b",
+      "content": "\"\"\"Small owned fixture; never imported by the scenario loader.\"\"\"\n\n\ndef normalize_status(status: str | None) -> str:\n    return status.lower()\n"
+    },
+    {
+      "path": "test_orders.py",
+      "before": null,
+      "content": "import unittest\nfrom orders import normalize_status\n\nclass NullHandling(unittest.TestCase):\n    def test_null(self) -> None:\n        self.assertEqual(normalize_status(None), \"pending\")\n    def test_normal(self) -> None:\n        self.assertEqual(normalize_status(\"PAID\"), \"paid\")\n"
+    }
+  ],
+  "simulation": null,
+  "variants": []
+}

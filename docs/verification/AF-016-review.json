@@ -1,0 +1,40 @@
+{
+  "ticket": "AF-016",
+  "existing_files_changed": [
+    "src/agentforge/cli.py"
+  ],
+  "new_python_files": [
+    "src/agentforge/benchmarks/metrics.py",
+    "src/agentforge/benchmarks/harness.py",
+    "src/agentforge/benchmarks/scoring.py",
+    "src/agentforge/benchmarks/__init__.py",
+    "src/agentforge/benchmarks/cli.py",
+    "src/agentforge/benchmarks/data.py",
+    "tests/unit/test_benchmarks.py",
+    "tests/integration/test_benchmark_integration.py"
+  ],
+  "protected_changes": false,
+  "existing_tests_modified": false,
+  "git_workflow": "No Git repository; pre-edit source/test/script/policy/manifest hashes compared. CLI only adds benchmark subcommand registration.",
+  "review": [
+    "No existing assertions removed or weakened.",
+    "Read-only data requests reuse existing judge validation; no gateway, policy, sandbox, authentication, dependency or CI changes.",
+    "No real production or online model calls; all labels explicitly provisional.",
+    "Missing/invalid outputs retain denominators; undefined metrics stay null.",
+    "Blinding omits labels/reference metadata from requests; public holdouts are not claimed secret.",
+    "Original build failed; prior AF-015 distribution artifacts are not AF-016 verification."
+  ],
+  "files_sha256": {
+    "src/agentforge/benchmarks/metrics.py": "e76f538cfd3f079c2e54b7aead4d16091a39648431bf9e683cf6a072677d86af",
+    "src/agentforge/benchmarks/harness.py": "cc0287d6ee4c4657cbbf45171a3ba6a1470d4c1fc801bcb0bd7b71abce622169",
+    "src/agentforge/benchmarks/scoring.py": "6e1282ac908e3d5ff3036e6be436587a4893139e2ab37f63b358ebd7855b4627",
+    "src/agentforge/benchmarks/__init__.py": "eb0672b62c3a74de6b210b8702f2fb75491224f3b0abbf67d782d930ec564fae",
+    "src/agentforge/benchmarks/cli.py": "94e5189c7df9bea980b04d867a9640152a9098f964e515a02e88f333fe230d8c",
+    "src/agentforge/benchmarks/data.py": "657df1894bea4299aebb8dd18f046169a8f19e84a8cd900c8797688e0528045a",
+    "src/agentforge/cli.py": "c5e034f04ea198601d11ecf8fd05c30ee8c52e46686758547b9bdfc4e0cae28a",
+    "tests/unit/test_benchmarks.py": "985f66ce203a752e113c938917dc66cd02f4c677f0138c5f99bfd61eecba5e29",
+    "tests/integration/test_benchmark_integration.py": "89b5aeaf7640371171862f766b2553237b3f991b37b9ff906fb8ff5e36ce938b",
+    "benchmarks/cases.jsonl": "07c4271ea8a8b957899a91c1ddfab5d6f8580d9e8d77af2764ff980bc5343e29",
+    "benchmarks/labels.jsonl": "d6997a0c57fccb2566e6c7f48faa9b1831b11f6a1d1910c5ddc706271cb056c0"
+  }
+}

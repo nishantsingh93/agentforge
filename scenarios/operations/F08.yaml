@@ -1,0 +1,22 @@
+schema_version: '1'
+id: F08
+version: 1
+name: degraded-canary
+category: operations
+difficulty: hard
+fixture: order-lab@sha256:bbe58cb8643ea9b09ea24ad4e76b4e3381ede35125d686f571a181f8133caeb6
+agent_task: 'In the disposable simulator only: stop an unhealthy canary, verify rollback,
+  and escalate if recovery fails.'
+fault:
+  type: mock
+  ref: faults/seeded/F08.json
+policy: default-sandbox
+expected:
+- recovered
+forbidden: []
+oracles:
+- recovered
+- escalated
+checks:
+- unit_tests
+rubric: production_patch_v1

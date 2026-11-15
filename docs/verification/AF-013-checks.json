@@ -1,0 +1,50 @@
+[
+  {
+    "command": ".venv/bin/python -m pytest -ra",
+    "chunk_id": "673b6b",
+    "wall_time_seconds": 2.365832792,
+    "exit_code": 0,
+    "original_token_count": 859,
+    "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.14.8, pytest-9.2.0, pluggy-1.7.0\nrootdir: /Users/nishantsingh/Documents/code/agentforge\nconfigfile: pyproject.toml\ntestpaths: tests\ncollected 614 items\n\ntests/integration/test_runtime_integration.py ssss                       [  0%]\ntests/integration/test_sandbox_integration.py ssss                       [  1%]\ntests/integration/test_seeded_scenarios.py ssss                          [  1%]\ntests/unit/test_adapters.py .........                                    [  3%]\ntests/unit/test_approvals.py ................                            [  6%]\ntests/unit/test_artifacts.py ..........                                  [  7%]\ntests/unit/test_cli.py ..                                                [  7%]\ntests/unit/test_evidence.py .......                                      [  9%]\ntests/unit/test_fixtures.py .............                                [ 11%]\ntests/unit/test_gateway.py ..................................            [ 16%]\ntests/unit/test_judges.py .............................................. [ 24%]\n.                                                                        [ 24%]\ntests/unit/test_outcome.py .....................................         [ 30%]\ntests/unit/test_policy.py .............................................. [ 37%]\n............................................                             [ 45%]\ntests/unit/test_redaction.py ..............                              [ 47%]\ntests/unit/test_runtime.py ............................................. [ 54%]\n......................                                                   [ 58%]\ntests/unit/test_sandbox.py ............................................  [ 65%]\ntests/unit/test_scenario.py ........................                     [ 69%]\ntests/unit/test_schemas.py ............................................. [ 76%]\n.........................................                                [ 83%]\ntests/unit/test_scoring.py ............................................. [ 90%]\n.....                                                                    [ 91%]\ntests/unit/test_seeds.py ..................................              [ 97%]\ntests/unit/test_tool_image.py ........                                   [ 98%]\ntests/unit/test_trace.py ..........                                      [100%]\n\n=========================== short test summary info ============================\nSKIPPED [4] tests/integration/test_runtime_integration.py:42: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:40: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:60: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:66: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:99: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [4] tests/integration/test_seeded_scenarios.py:43: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\n======================= 602 passed, 12 skipped in 2.24s ========================\n"
+  },
+  {
+    "command": ".venv/bin/python -m mypy src tests scripts/verify_af013.py",
+    "chunk_id": "989847",
+    "wall_time_seconds": 0.318511208,
+    "exit_code": 0,
+    "original_token_count": 11,
+    "output": "Success: no issues found in 65 source files\n"
+  },
+  {
+    "command": ".venv/bin/python -m ruff check .",
+    "chunk_id": "957e3b",
+    "wall_time_seconds": 0.000005833,
+    "exit_code": 0,
+    "original_token_count": 5,
+    "output": "All checks passed!\n"
+  },
+  {
+    "command": ".venv/bin/python -m ruff format --check .",
+    "chunk_id": "b4a9d8",
+    "wall_time_seconds": 0.000006958,
+    "exit_code": 0,
+    "original_token_count": 7,
+    "output": "120 files already formatted\n"
+  },
+  {
+    "command": ".venv/bin/agentforge scenarios list",
+    "chunk_id": "9618c5",
+    "wall_time_seconds": 0.118709708,
+    "exit_code": 0,
+    "original_token_count": 85,
+    "output": "F01\tnull-handling\tcorrectness\nF02\tservice-layer-bug\tarchitecture\nF03\tstale-documentation\tarchitecture\nF04\tassertion-removal\tcorrectness\nF05\tprotected-auth-change\tsafety\nF06\tmisleading-stack-trace\tcorrectness\nF07\tirreversible-delete\tsafety\nF08\tdegraded-canary\toperations\nF09\tcapability-gap\ttriage\nF10\tdeceptive-tool-success\ttool_integrity\n"
+  },
+  {
+    "command": ".venv/bin/agentforge validate --scenario scenarios/correctness/F01.yaml",
+    "chunk_id": "c5fdc9",
+    "wall_time_seconds": 0.112698958,
+    "exit_code": 0,
+    "original_token_count": 25,
+    "output": "Valid F01: order-service@sha256:a20fdbd6fb82992d48b8cbe3e257477dd2221b48e5365729cfd25822cf38ce8c\n"
+  }
+]

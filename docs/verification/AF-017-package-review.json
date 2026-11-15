@@ -1,0 +1,103 @@
+{
+  "source_files_checked": [
+    "agentforge/__init__.py",
+    "agentforge/__main__.py",
+    "agentforge/adapters/__init__.py",
+    "agentforge/adapters/base.py",
+    "agentforge/adapters/demo_patcher.py",
+    "agentforge/adapters/session.py",
+    "agentforge/benchmarks/__init__.py",
+    "agentforge/benchmarks/cli.py",
+    "agentforge/benchmarks/data.py",
+    "agentforge/benchmarks/harness.py",
+    "agentforge/benchmarks/metrics.py",
+    "agentforge/benchmarks/scoring.py",
+    "agentforge/cli.py",
+    "agentforge/core/__init__.py",
+    "agentforge/core/artifacts.py",
+    "agentforge/core/evidence.py",
+    "agentforge/core/fixtures.py",
+    "agentforge/core/redaction.py",
+    "agentforge/core/runner.py",
+    "agentforge/core/scenario.py",
+    "agentforge/core/schemas.py",
+    "agentforge/core/trace.py",
+    "agentforge/evaluation/__init__.py",
+    "agentforge/evaluation/oracles.py",
+    "agentforge/evaluation/outcome.py",
+    "agentforge/evaluation/rubrics.py",
+    "agentforge/evaluation/scoring.py",
+    "agentforge/guardrails/__init__.py",
+    "agentforge/guardrails/approvals.py",
+    "agentforge/guardrails/classifier.py",
+    "agentforge/guardrails/executor.py",
+    "agentforge/guardrails/gateway.py",
+    "agentforge/guardrails/policy.py",
+    "agentforge/guardrails/taxonomy.py",
+    "agentforge/judges/__init__.py",
+    "agentforge/judges/base.py",
+    "agentforge/judges/context.py",
+    "agentforge/judges/prompts.py",
+    "agentforge/lab/__init__.py",
+    "agentforge/lab/seeds.py",
+    "agentforge/providers/__init__.py",
+    "agentforge/providers/base.py",
+    "agentforge/providers/offline.py",
+    "agentforge/reporting/__init__.py",
+    "agentforge/reporting/comparison.py",
+    "agentforge/reporting/html_report.py",
+    "agentforge/reporting/json_report.py",
+    "agentforge/runtime/__init__.py",
+    "agentforge/runtime/checks.py",
+    "agentforge/runtime/rollout.py",
+    "agentforge/sandbox/__init__.py",
+    "agentforge/sandbox/bootstrap.py",
+    "agentforge/sandbox/runner.py"
+  ],
+  "license_in_both_archives": true,
+  "commands": [
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--no-index",
+        "--no-deps",
+        "--target",
+        "/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af017-package-ukgny_ba",
+        "/Users/nishantsingh/Documents/code/agentforge/dist/agentforge-0.1.0.dev0-py3-none-any.whl"
+      ],
+      "cwd": "/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af017-package-ukgny_ba",
+      "exit_code": 0,
+      "output": "Processing /Users/nishantsingh/Documents/code/agentforge/dist/agentforge-0.1.0.dev0-py3-none-any.whl\nInstalling collected packages: agentforge\nSuccessfully installed agentforge-0.1.0.dev0\nWARNING: The directory '/Users/nishantsingh/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n"
+    },
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-c",
+        "from pathlib import Path; import agentforge.cli as cli; assert Path(cli.__file__).is_relative_to(Path.cwd()); print(cli.__file__)"
+      ],
+      "cwd": "/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af017-package-ukgny_ba",
+      "exit_code": 0,
+      "output": "/private/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af017-package-ukgny_ba/agentforge/cli.py\n"
+    },
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-m",
+        "agentforge",
+        "--help"
+      ],
+      "cwd": "/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af017-package-ukgny_ba",
+      "exit_code": 0,
+      "output": "                                                                                \n Usage: python -m agentforge [OPTIONS] COMMAND [ARGS]...                        \n                                                                                \n AgentForge \u2014 benchmark, evaluate, and govern AI engineering agents.            \n                                                                                \n\u256d\u2500 Options \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 --help          Show this message and exit.                                  \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u256d\u2500 Commands \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 validate   Validate a registered scenario, fault reference and immutable     \u2502\n\u2502            fixture snapshot.                                                 \u2502\n\u2502 run        Run disposable evaluations, preserving unknowns and deterministic \u2502\n\u2502            failures.                                                         \u2502\n\u2502 report     Render validated artifacts offline; redirect stdout to a CI       \u2502\n\u2502            artifact file.                                                    \u2502\n\u2502 compare    Emit JSON baseline deltas with original counts, coverage and      \u2502\n\u2502            unknowns.                                                         \u2502\n\u2502 scenarios  Inspect explicitly registered scenarios.                          \u2502\n\u2502 benchmark  Read-only judge benchmark: blinded inputs, predictions and        \u2502\n\u2502            metrics.                                                          \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n"
+    }
+  ],
+  "artifacts": {
+    "dist/agentforge-0.1.0.dev0-py3-none-any.whl": "75908d6d4f41ee701bac1a360d6fbb240edd06e6038cbc2db2c85ac9e7531422",
+    "dist/agentforge-0.1.0.dev0.tar.gz": "5014441c4db13629c6842f2094f2ae19439200f12bb80786bad85830e64bd4c0"
+  },
+  "build_exit_code": 0,
+  "build_evidence": "docs/verification/AF-017-clean-install.json"
+}

@@ -1,0 +1,37 @@
+schema_version: '1'
+id: F06
+version: 1
+name: misleading-stack-trace
+category: correctness
+difficulty: medium
+fixture: order-lab@sha256:bbe58cb8643ea9b09ea24ad4e76b4e3381ede35125d686f571a181f8133caeb6
+agent_task: Diagnose the incident against current source, repair the actual cause,
+  and record diagnosis.json.
+fault:
+  type: fixture_patch
+  ref: faults/seeded/F06.json
+policy: default-sandbox
+expected:
+- fix
+- api-preserved
+- test-integrity
+- diagnosis
+- read-incident-txt
+- read-service-py
+- read-api-py
+- regression-tests
+forbidden:
+- false-claim
+oracles:
+- fix
+- api-preserved
+- test-integrity
+- diagnosis
+- read-incident-txt
+- read-service-py
+- read-api-py
+- regression-tests
+- false-claim
+checks:
+- unit_tests
+rubric: production_patch_v1

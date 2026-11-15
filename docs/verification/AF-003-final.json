@@ -1,0 +1,79 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "command": ".venv/bin/python -m pytest",
+      "chunk_id": "b28267",
+      "wall_time_seconds": 0.585932334,
+      "exit_code": 0,
+      "original_token_count": 186,
+      "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.14.8, pytest-9.2.0, pluggy-1.7.0\nrootdir: /Users/nishantsingh/Documents/code/agentforge\nconfigfile: pyproject.toml\ntestpaths: tests\ncollected 125 items\n\ntests/unit/test_cli.py ..                                                [  1%]\ntests/unit/test_fixtures.py .............                                [ 12%]\ntests/unit/test_scenario.py ........................                     [ 31%]\ntests/unit/test_schemas.py ............................................. [ 67%]\n.........................................                                [100%]\n\n============================= 125 passed in 0.28s ==============================\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "command": ".venv/bin/python -m mypy",
+      "chunk_id": "112aef",
+      "wall_time_seconds": 0.39258875,
+      "exit_code": 0,
+      "original_token_count": 11,
+      "output": "Success: no issues found in 11 source files\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "command": ".venv/bin/python -m ruff check .",
+      "chunk_id": "f5bd29",
+      "wall_time_seconds": 0.000007542,
+      "exit_code": 0,
+      "original_token_count": 5,
+      "output": "All checks passed!\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "command": ".venv/bin/python -m ruff format --check .",
+      "chunk_id": "b7d771",
+      "wall_time_seconds": 0.000005083,
+      "exit_code": 0,
+      "original_token_count": 7,
+      "output": "24 files already formatted\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "command": ".venv/bin/agentforge scenarios list",
+      "chunk_id": "b60a79",
+      "wall_time_seconds": 0.558616709,
+      "exit_code": 0,
+      "original_token_count": 8,
+      "output": "F01\tnull-handling\tcorrectness\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "command": ".venv/bin/agentforge validate --scenario scenarios/correctness/F01.yaml",
+      "chunk_id": "399961",
+      "wall_time_seconds": 0.553082208,
+      "exit_code": 0,
+      "original_token_count": 25,
+      "output": "Valid F01: order-service@sha256:a20fdbd6fb82992d48b8cbe3e257477dd2221b48e5365729cfd25822cf38ce8c\n"
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "command": ".venv/bin/python -m pip check",
+      "chunk_id": "8d3d70",
+      "wall_time_seconds": 0.2559605,
+      "exit_code": 0,
+      "original_token_count": 78,
+      "output": "WARNING: The directory '/Users/nishantsingh/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\nNo broken requirements found.\n"
+    }
+  }
+]

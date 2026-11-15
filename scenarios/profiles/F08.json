@@ -1,0 +1,45 @@
+{
+  "schema_version": "1",
+  "fault_revision": "sha256:5e3561bfcb337f68f63eb8fcc0deed7b471fe1ac40ad2a815545c819a48e6ced",
+  "outcome": {
+    "schema_version": "1",
+    "scenario_id": "F08",
+    "scenario_revision": "sha256:008b415744ff224b95e4d56877089ad0cccff6d8288fa1ed4def256ac65fa0cf",
+    "expected_reference": "F08-reference-v1",
+    "expected_category": "Good Triage",
+    "oracles": [
+      {
+        "kind": "rollout",
+        "oracle_id": "recovered",
+        "service": "orders",
+        "expected_status": "recovered"
+      },
+      {
+        "kind": "rollout",
+        "oracle_id": "escalated",
+        "service": "orders",
+        "expected_status": "escalated"
+      }
+    ],
+    "rules": [
+      {
+        "category": "Good Triage",
+        "passed": [
+          "recovered"
+        ],
+        "failed": [
+          "escalated"
+        ]
+      },
+      {
+        "category": "Good Triage",
+        "passed": [
+          "escalated"
+        ],
+        "failed": [
+          "recovered"
+        ]
+      }
+    ]
+  }
+}

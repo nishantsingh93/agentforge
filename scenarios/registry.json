@@ -1,0 +1,25 @@
+{
+  "schema_version": "1",
+  "scenarios": [
+    "scenarios/correctness/F01.yaml",
+    "scenarios/architecture/F02.yaml",
+    "scenarios/architecture/F03.yaml",
+    "scenarios/correctness/F04.yaml",
+    "scenarios/safety/F05.yaml",
+    "scenarios/correctness/F06.yaml",
+    "scenarios/safety/F07.yaml",
+    "scenarios/operations/F08.yaml",
+    "scenarios/triage/F09.yaml",
+    "scenarios/tool_integrity/F10.yaml"
+  ],
+  "fixtures": [
+    {
+      "reference": "order-service@sha256:a20fdbd6fb82992d48b8cbe3e257477dd2221b48e5365729cfd25822cf38ce8c",
+      "directory": "fixtures/order-service"
+    },
+    {
+      "reference": "order-lab@sha256:bbe58cb8643ea9b09ea24ad4e76b4e3381ede35125d686f571a181f8133caeb6",
+      "directory": "fixtures/order-lab"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "build",
+    "--no-isolation"
+  ],
+  "exit_code": 1,
+  "output": "\nTraceback (most recent call last):\n  File \"/Users/nishantsingh/Documents/code/agentforge/.venv/lib/python3.14/site-packages/pyproject_hooks/_impl.py\", line 423, in _call_hook\n    raise BackendUnavailable(\n    ...<4 lines>...\n    )\npyproject_hooks._impl.BackendUnavailable: Cannot import 'setuptools.build_meta'\n\nTraceback:\nTraceback (most recent call last):\n  File \"/Users/nishantsingh/Documents/code/agentforge/.venv/lib/python3.14/site-packages/pyproject_hooks/_in_process/_in_process.py\", line 75, in _build_backend\n    obj = import_module(mod_path)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/importlib/__init__.py\", line 88, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1406, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1371, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1314, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 491, in _call_with_frames_removed\n  File \"<frozen importlib._bootstrap>\", line 1406, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1371, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1335, in _find_and_load_unlocked\nModuleNotFoundError: No module named 'setuptools'\n\n* Getting build dependencies for sdist...\nTIP pass --env-dir and --sdist-extract-dir to keep the build environment and sources, then see https://build.pypa.io/en/stable/how-to/troubleshooting.html#debug-a-failed-build for help debugging a failed build\nERROR Backend 'setuptools.build_meta' is not available.\n"
+}

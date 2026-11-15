@@ -1,0 +1,15 @@
+{
+  "verified": true,
+  "result": "8 passed, zero skipped",
+  "image_id": "sha256:214264c2d50efe80f7e1efacc905cc1bbd5a36912fbd775b8f62840388c295de",
+  "artifact_sha256": {
+    "docs/verification/AF-009-real-20261111T044000128589Z/result.json": "c3665cb6c4d0ec4364116a354d84704656048e70b5bd2b218dc7495ebfde20cd",
+    "docs/verification/AF-009-real-20261111T044000128589Z/pytest.log": "f4a14b6cd6ecca93874e3f0223eddae7fdd1d7f23b9dc0cad121d52107f33ed2",
+    "docs/verification/AF-009-real-20261111T044000128589Z/integration.xml": "5c23722ef37b50c94e3f144f8d9f595d51b8f276c396b011b098586a0823e54e",
+    "runs/tool-image/20261111T043952065408Z/settings.json": "49e7d777eff431b5527131770ac03a613c816355b491f647e66245fb106541dc",
+    "runs/tool-image/20261111T043952065408Z/commands.json": "85eb7a582fccafdfec4e8dcd2ed959fedacd76c2a8edd36fe12dbac62ae62783",
+    "runs/tool-image/20261111T043952065408Z/tools.lock": "499b7e74c03dec26d0b960b767da7d3c8885c463b5d18b53d54cff53dabb2080",
+    "runs/tool-image/20261111T043952065408Z/image-inspect.json": "e1b0580978a9bc3fad3e4a3c43443574130d6194eba72a159948f91449ebe510",
+    "runs/tool-image/20261111T043952065408Z/verification.json": "0797e469a03164e8db5a2971834d92c49b06a8aba857980ccaf9085e8c1df494"
+  }
+}

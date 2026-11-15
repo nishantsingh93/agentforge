@@ -1,0 +1,51 @@
+{
+  "yaml": "parsed",
+  "manifest": "parsed",
+  "workflow_not_applied": true,
+  "shell_checks": [
+    {
+      "name": "Install reviewed project dependencies",
+      "bash_syntax_exit": 0
+    },
+    {
+      "name": "Tests without Docker",
+      "bash_syntax_exit": 0
+    },
+    {
+      "name": "Static checks and package build",
+      "bash_syntax_exit": 0
+    },
+    {
+      "name": "Offline benchmark artifacts",
+      "bash_syntax_exit": 0
+    },
+    {
+      "name": "run",
+      "bash_syntax_exit": 0
+    },
+    {
+      "name": "Provision reviewed tooling image on disposable hosted runner",
+      "bash_syntax_exit": 0
+    },
+    {
+      "name": "Real integrations with no skips",
+      "bash_syntax_exit": 0
+    },
+    {
+      "name": "Actual offline smoke and reports",
+      "bash_syntax_exit": 0
+    },
+    {
+      "name": "run",
+      "bash_syntax_exit": 0
+    },
+    {
+      "name": "Audit installed dependencies without automatic fixes",
+      "bash_syntax_exit": 0
+    }
+  ],
+  "embedded_python": "parsed without execution",
+  "actionlint": "not installed; not run",
+  "hosted_ci": "not run",
+  "patch_sha256": "4e2100b71b7fce2e567ab84ba382bef226a257fecadc0f0ce78db06ab316f5df"
+}

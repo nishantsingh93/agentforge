@@ -1,0 +1,74 @@
+[
+  {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-ra"
+    ],
+    "exit_code": 0,
+    "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.14.8, pytest-9.2.0, pluggy-1.7.0\nrootdir: /Users/nishantsingh/Documents/code/agentforge\nconfigfile: pyproject.toml\ntestpaths: tests\ncollected 654 items\n\ntests/integration/test_reporting_integration.py s                        [  0%]\ntests/integration/test_run_integration.py sss                            [  0%]\ntests/integration/test_runtime_integration.py ssss                       [  1%]\ntests/integration/test_sandbox_integration.py ssss                       [  1%]\ntests/integration/test_seeded_scenarios.py ssss                          [  2%]\ntests/unit/test_adapters.py .........                                    [  3%]\ntests/unit/test_approvals.py ................                            [  6%]\ntests/unit/test_artifacts.py ..........                                  [  7%]\ntests/unit/test_cli.py ..                                                [  8%]\ntests/unit/test_evidence.py .......                                      [  9%]\ntests/unit/test_fixtures.py .............                                [ 11%]\ntests/unit/test_gateway.py ..................................            [ 16%]\ntests/unit/test_judges.py .............................................. [ 23%]\n.                                                                        [ 23%]\ntests/unit/test_outcome.py .....................................         [ 29%]\ntests/unit/test_policy.py .............................................. [ 36%]\n............................................                             [ 42%]\ntests/unit/test_redaction.py ..............                              [ 45%]\ntests/unit/test_reporting.py ...................                         [ 48%]\ntests/unit/test_runner.py .................                              [ 50%]\ntests/unit/test_runtime.py ............................................. [ 57%]\n......................                                                   [ 60%]\ntests/unit/test_sandbox.py ............................................  [ 67%]\ntests/unit/test_scenario.py ........................                     [ 71%]\ntests/unit/test_schemas.py ............................................. [ 78%]\n.........................................                                [ 84%]\ntests/unit/test_scoring.py ............................................. [ 91%]\n.....                                                                    [ 92%]\ntests/unit/test_seeds.py ..................................              [ 97%]\ntests/unit/test_tool_image.py ........                                   [ 98%]\ntests/unit/test_trace.py ..........                                      [100%]\n\n=========================== short test summary info ============================\nSKIPPED [1] tests/integration/test_reporting_integration.py:14: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_run_integration.py:42: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_run_integration.py:56: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_run_integration.py:68: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [4] tests/integration/test_runtime_integration.py:42: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:40: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:60: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:66: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [1] tests/integration/test_sandbox_integration.py:99: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\nSKIPPED [4] tests/integration/test_seeded_scenarios.py:43: set explicit local AGENTFORGE_TEST_DOCKER_HOST and pinned AGENTFORGE_TEST_IMAGE\n======================= 638 passed, 16 skipped in 4.64s ========================\n"
+  },
+  {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "mypy"
+    ],
+    "exit_code": 0,
+    "output": "Success: no issues found in 73 source files\n"
+  },
+  {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "mypy",
+      "scripts/verify_af015.py"
+    ],
+    "exit_code": 1,
+    "output": "scripts/verify_af015.py:12: error: Skipping analyzing \"agentforge.sandbox.runner\": module is installed, but missing library stubs or py.typed marker  [import-untyped]\nscripts/verify_af015.py:12: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports\nFound 1 error in 1 file (checked 1 source file)\n"
+  },
+  {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "ruff",
+      "check",
+      "."
+    ],
+    "exit_code": 0,
+    "output": "All checks passed!\n"
+  },
+  {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "ruff",
+      "format",
+      "--check",
+      "."
+    ],
+    "exit_code": 0,
+    "output": "135 files already formatted\n"
+  },
+  {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0,
+    "output": "No broken requirements found.\nWARNING: The directory '/Users/nishantsingh/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n"
+  },
+  {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "build",
+      "--no-isolation"
+    ],
+    "exit_code": 1,
+    "output": "\nTraceback (most recent call last):\n  File \"/Users/nishantsingh/Documents/code/agentforge/.venv/lib/python3.14/site-packages/pyproject_hooks/_impl.py\", line 423, in _call_hook\n    raise BackendUnavailable(\n    ...<4 lines>...\n    )\npyproject_hooks._impl.BackendUnavailable: Cannot import 'setuptools.build_meta'\n\nTraceback:\nTraceback (most recent call last):\n  File \"/Users/nishantsingh/Documents/code/agentforge/.venv/lib/python3.14/site-packages/pyproject_hooks/_in_process/_in_process.py\", line 75, in _build_backend\n    obj = import_module(mod_path)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/importlib/__init__.py\", line 88, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1406, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1371, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1314, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 491, in _call_with_frames_removed\n  File \"<frozen importlib._bootstrap>\", line 1406, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1371, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1335, in _find_and_load_unlocked\nModuleNotFoundError: No module named 'setuptools'\n\n* Getting build dependencies for sdist...\nTIP pass --env-dir and --sdist-extract-dir to keep the build environment and sources, then see https://build.pypa.io/en/stable/how-to/troubleshooting.html#debug-a-failed-build for help debugging a failed build\nERROR Backend 'setuptools.build_meta' is not available.\n"
+  }
+]

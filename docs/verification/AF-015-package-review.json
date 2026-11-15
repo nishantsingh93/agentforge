@@ -1,0 +1,111 @@
+{
+  "ticket": "AF-015",
+  "artifact_validation": "passed",
+  "source_files_checked": [
+    "agentforge/__init__.py",
+    "agentforge/__main__.py",
+    "agentforge/adapters/__init__.py",
+    "agentforge/adapters/base.py",
+    "agentforge/adapters/demo_patcher.py",
+    "agentforge/adapters/session.py",
+    "agentforge/cli.py",
+    "agentforge/core/__init__.py",
+    "agentforge/core/artifacts.py",
+    "agentforge/core/evidence.py",
+    "agentforge/core/fixtures.py",
+    "agentforge/core/redaction.py",
+    "agentforge/core/runner.py",
+    "agentforge/core/scenario.py",
+    "agentforge/core/schemas.py",
+    "agentforge/core/trace.py",
+    "agentforge/evaluation/__init__.py",
+    "agentforge/evaluation/oracles.py",
+    "agentforge/evaluation/outcome.py",
+    "agentforge/evaluation/rubrics.py",
+    "agentforge/evaluation/scoring.py",
+    "agentforge/guardrails/__init__.py",
+    "agentforge/guardrails/approvals.py",
+    "agentforge/guardrails/classifier.py",
+    "agentforge/guardrails/executor.py",
+    "agentforge/guardrails/gateway.py",
+    "agentforge/guardrails/policy.py",
+    "agentforge/guardrails/taxonomy.py",
+    "agentforge/judges/__init__.py",
+    "agentforge/judges/base.py",
+    "agentforge/judges/context.py",
+    "agentforge/judges/prompts.py",
+    "agentforge/lab/__init__.py",
+    "agentforge/lab/seeds.py",
+    "agentforge/providers/__init__.py",
+    "agentforge/providers/base.py",
+    "agentforge/providers/offline.py",
+    "agentforge/reporting/__init__.py",
+    "agentforge/reporting/comparison.py",
+    "agentforge/reporting/html_report.py",
+    "agentforge/reporting/json_report.py",
+    "agentforge/runtime/__init__.py",
+    "agentforge/runtime/checks.py",
+    "agentforge/runtime/rollout.py",
+    "agentforge/sandbox/__init__.py",
+    "agentforge/sandbox/bootstrap.py",
+    "agentforge/sandbox/runner.py"
+  ],
+  "artifacts": {
+    "dist/agentforge-0.1.0.dev0-py3-none-any.whl": "77fc29d1d67d5e0a371546055ce25e7f276a290e8ed513cf757f49c4bc43bed0",
+    "dist/agentforge-0.1.0.dev0.tar.gz": "45a61ee275beda91e84e0bebcdd64647393310c4e4639324a69ca1cd32867f10"
+  },
+  "commands": [
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--no-index",
+        "--no-deps",
+        "--target",
+        "/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af015-wheel-5u05o2kv",
+        "/Users/nishantsingh/Documents/code/agentforge/dist/agentforge-0.1.0.dev0-py3-none-any.whl"
+      ],
+      "cwd": "/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af015-wheel-5u05o2kv",
+      "exit_code": 0,
+      "output": "Processing /Users/nishantsingh/Documents/code/agentforge/dist/agentforge-0.1.0.dev0-py3-none-any.whl\nInstalling collected packages: agentforge\nSuccessfully installed agentforge-0.1.0.dev0\nWARNING: The directory '/Users/nishantsingh/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n"
+    },
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-m",
+        "agentforge",
+        "report",
+        "--help"
+      ],
+      "cwd": "/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af015-wheel-5u05o2kv",
+      "exit_code": 0,
+      "output": "                                                                                \n Usage: python -m agentforge report [OPTIONS] {run_id}                          \n                                                                                \n Render validated artifacts offline; redirect stdout to a CI artifact file.     \n                                                                                \n\u256d\u2500 Arguments \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 *    run_id      <str>  [required]                                           \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u256d\u2500 Options \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 --format           <str>   html or json; output to stdout. [default: html]   \u2502\n\u2502 --runs-root        <path>  Existing run artifact directory. [default: runs]  \u2502\n\u2502 --baseline         <str>   Optional baseline run or suite ID.                \u2502\n\u2502 --help                     Show this message and exit.                       \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n"
+    },
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-m",
+        "agentforge",
+        "compare",
+        "--help"
+      ],
+      "cwd": "/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af015-wheel-5u05o2kv",
+      "exit_code": 0,
+      "output": "                                                                                \n Usage: python -m agentforge compare [OPTIONS] {baseline} {current}             \n                                                                                \n Emit JSON baseline deltas with original counts, coverage and unknowns.         \n                                                                                \n\u256d\u2500 Arguments \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 *    baseline      <str>  [required]                                         \u2502\n\u2502 *    current       <str>  [required]                                         \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u256d\u2500 Options \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 --runs-root        <path>  Existing run artifact directory. [default: runs]  \u2502\n\u2502 --help                     Show this message and exit.                       \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n"
+    },
+    {
+      "command": [
+        "/Users/nishantsingh/Documents/code/agentforge/.venv/bin/python",
+        "-c",
+        "from pathlib import Path; import agentforge.reporting.json_report as r; from agentforge.reporting.html_report import render_html; from agentforge.reporting.comparison import compare; assert Path(r.__file__).is_relative_to(Path.cwd()); print(r.__file__)"
+      ],
+      "cwd": "/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af015-wheel-5u05o2kv",
+      "exit_code": 0,
+      "output": "/private/var/folders/sp/3x95n4_d6v39crmgnrn7vx580000gn/T/af015-wheel-5u05o2kv/agentforge/reporting/json_report.py\n"
+    }
+  ],
+  "build_exit_code": null,
+  "note": "Original operator build exit code not supplied. Both archives match current source; wheel installation and installed reporting CLI/import checks passed."
+}

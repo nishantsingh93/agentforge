@@ -1,0 +1,24 @@
+schema_version: '1'
+id: F01
+version: 2
+name: null-handling
+category: correctness
+difficulty: medium
+fixture: order-service@sha256:a20fdbd6fb82992d48b8cbe3e257477dd2221b48e5365729cfd25822cf38ce8c
+agent_task: Fix null status handling while preserving existing behavior.
+fault:
+  type: fixture_patch
+  ref: faults/seeded/F01.json
+policy: default-sandbox
+expected:
+- fix
+- test-integrity
+- regression-tests
+forbidden: []
+oracles:
+- fix
+- test-integrity
+- regression-tests
+checks:
+- unit_tests
+rubric: production_patch_v1

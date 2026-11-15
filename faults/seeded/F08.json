@@ -1,0 +1,139 @@
+{
+  "schema_version": "1",
+  "scenario_id": "F08",
+  "replacements": [],
+  "simulation": {
+    "schema_version": "1",
+    "service": "orders",
+    "baseline_version": "v1",
+    "candidate_version": "v2",
+    "thresholds": {
+      "max_error_rate": 0.01,
+      "max_p95_ms": 500.0,
+      "min_availability": 0.99,
+      "min_business_success": 0.98,
+      "min_window_seconds": 60.0,
+      "max_age_seconds": 5.0
+    },
+    "baseline": {
+      "phase": "baseline",
+      "error_rate": 0.001,
+      "p95_ms": 100.0,
+      "availability": 1.0,
+      "business_success": 1.0,
+      "window_seconds": 60.0,
+      "age_seconds": 0.0
+    },
+    "canary": {
+      "phase": "canary",
+      "error_rate": 0.2,
+      "p95_ms": 100.0,
+      "availability": 1.0,
+      "business_success": 0.7,
+      "window_seconds": 60.0,
+      "age_seconds": 0.0
+    },
+    "rollback": {
+      "phase": "rollback",
+      "error_rate": 0.001,
+      "p95_ms": 100.0,
+      "availability": 1.0,
+      "business_success": 1.0,
+      "window_seconds": 60.0,
+      "age_seconds": 0.0
+    },
+    "rollback_fault": "none"
+  },
+  "variants": [
+    {
+      "name": "rollback-failed",
+      "simulation": {
+        "schema_version": "1",
+        "service": "orders",
+        "baseline_version": "v1",
+        "candidate_version": "v2",
+        "thresholds": {
+          "max_error_rate": 0.01,
+          "max_p95_ms": 500.0,
+          "min_availability": 0.99,
+          "min_business_success": 0.98,
+          "min_window_seconds": 60.0,
+          "max_age_seconds": 5.0
+        },
+        "baseline": {
+          "phase": "baseline",
+          "error_rate": 0.001,
+          "p95_ms": 100.0,
+          "availability": 1.0,
+          "business_success": 1.0,
+          "window_seconds": 60.0,
+          "age_seconds": 0.0
+        },
+        "canary": {
+          "phase": "canary",
+          "error_rate": 0.2,
+          "p95_ms": 100.0,
+          "availability": 1.0,
+          "business_success": 0.7,
+          "window_seconds": 60.0,
+          "age_seconds": 0.0
+        },
+        "rollback": {
+          "phase": "rollback",
+          "error_rate": 0.001,
+          "p95_ms": 100.0,
+          "availability": 1.0,
+          "business_success": 1.0,
+          "window_seconds": 60.0,
+          "age_seconds": 0.0
+        },
+        "rollback_fault": "failed"
+      }
+    },
+    {
+      "name": "rollback-spoofed-success",
+      "simulation": {
+        "schema_version": "1",
+        "service": "orders",
+        "baseline_version": "v1",
+        "candidate_version": "v2",
+        "thresholds": {
+          "max_error_rate": 0.01,
+          "max_p95_ms": 500.0,
+          "min_availability": 0.99,
+          "min_business_success": 0.98,
+          "min_window_seconds": 60.0,
+          "max_age_seconds": 5.0
+        },
+        "baseline": {
+          "phase": "baseline",
+          "error_rate": 0.001,
+          "p95_ms": 100.0,
+          "availability": 1.0,
+          "business_success": 1.0,
+          "window_seconds": 60.0,
+          "age_seconds": 0.0
+        },
+        "canary": {
+          "phase": "canary",
+          "error_rate": 0.2,
+          "p95_ms": 100.0,
+          "availability": 1.0,
+          "business_success": 0.7,
+          "window_seconds": 60.0,
+          "age_seconds": 0.0
+        },
+        "rollback": {
+          "phase": "rollback",
+          "error_rate": 0.001,
+          "p95_ms": 100.0,
+          "availability": 1.0,
+          "business_success": 1.0,
+          "window_seconds": 60.0,
+          "age_seconds": 0.0
+        },
+        "rollback_fault": "spoofed-success"
+      }
+    }
+  ]
+}

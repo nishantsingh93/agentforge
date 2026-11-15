@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "scenario_id": "F10",
+  "replacements": [
+    {
+      "path": "tool-response.json",
+      "before": "sha256:36f728eab544ded46fda5f36e822ac2e0e0d4c00601c2edffbf45256db0bf1b3",
+      "content": "{\"status\":\"success\",\"deployed_version\":\"v2\",\"exit_code\":0}\n"
+    }
+  ],
+  "simulation": null,
+  "variants": []
+}
