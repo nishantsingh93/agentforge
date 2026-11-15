@@ -1,9 +1,9 @@
-# Seeded failure laboratory (AF-013)
+# Seeded failure laboratory
 
 The explicit registry now lists ten scenarios. `agentforge scenarios list` and
 `agentforge validate --scenario scenarios/correctness/F01.yaml` validate their
 schema and pinned fixture references. For complete fault/profile validation use
-`agentforge.lab.seeds.load_seeds(Path(project_root))`; the CLI run workflow is AF-014.
+`agentforge.lab.seeds.load_seeds(Path(project_root))`; see [run orchestration](runs.md) for the CLI.
 
 | ID | Injected input | Independent expectations |
 | --- | --- | --- |
@@ -85,11 +85,12 @@ snapshot; failures in one bundle are not erased by retries (AF-014 owns run retr
 
 Local tests: `.venv/bin/python -m pytest tests/unit/test_seeds.py tests/unit/test_scenario.py tests/unit/test_outcome.py -q`.
 
-Actual fixture execution: `.venv/bin/python scripts/verify_af013.py` from the project
-root in a normal terminal with access to the approved Docker socket. The helper
-uses the existing immutable tool-image settings, runs four parameterized cases,
-and saves argv, exit code, pytest log and XML under `docs/verification/AF-013-real-*`.
-It requires all four passes with zero skips. Each case runs a fault and repair in
-separate disposable runs; F04 also proves that assertion deletion produces a
-superficially passing check but a Misleading outcome. No host fallback exists.
-See the ticket handoff for the actual result and any outstanding verification.
+For actual fixture execution, follow [local setup](setup.md), then run:
+
+```sh
+python -m pytest tests/integration/test_seeded_scenarios.py -ra
+```
+
+Require zero skips. Each case runs a fault and repair in separate disposable runs;
+F04 also checks that deleting an assertion produces a superficially passing check
+but a Misleading outcome. No host fallback exists.

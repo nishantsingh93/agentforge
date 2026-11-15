@@ -1,10 +1,9 @@
-# Local disposable sandbox (AF-004)
+# Local disposable sandbox
 
 The runner is implemented under `agentforge.sandbox` and wired through the gateway.
-Prior real containment/runtime checks are recorded in the AF-004/008/009 handoffs;
-AF-014/015 cover real CLI execution. See [setup](setup.md) for a new workstation.
-This agent session may lack socket access; a local skip is not fresh containment
-proof. There is no fallback to host execution.
+See [setup](setup.md) to configure your environment and run actual integration
+checks. A skipped test is not containment evidence. There is no fallback to host
+execution.
 
 ## Operator prerequisites
 
@@ -80,11 +79,9 @@ The real test suite checks UID, fresh workspaces across runs, inaccessible synth
 host markers, protected paths, Docker socket absence, loopback-only networking,
 resource limits, timeout and verified cleanup. Fixture scripts are stored as
 `.py.txt` data so pytest cannot import them on the host. No production secrets are
-probed. Prior operator runs verified these cases; consult their immutable evidence in the
-ticket handoffs. Minimum Python 3.12 and other host platforms require separate
-verification; current local development checks use Python 3.14 on macOS.
+probed. Run these checks against the platform and image you intend to use, and
+retain the actual results with your evaluation evidence.
 
 The daemon, reviewed image, container kernel/runtime and trusted caller remain
 assumptions. A malicious daemon can lie about metadata/state; a kernel vulnerability
-may defeat isolation. No general safety guarantee is claimed. Operator approval
-for this implementation did not include Docker installation or image downloads.
+may defeat isolation. No general safety guarantee is claimed. Docker installation and image provisioning are separate operator actions.

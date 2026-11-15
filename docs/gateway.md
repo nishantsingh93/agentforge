@@ -1,4 +1,4 @@
-# Action gateway (AF-008)
+# Action gateway
 
 Gateway.submit accepts strict ActionRequest and returns Receipt. Trusted application
 wiring owns the gateway, context provider, ApprovalRegistry, FixtureExecutor and
@@ -81,17 +81,13 @@ references must match the same verified trace; refusal/failure/uncertainty stops
 plan. The driver's claim-linked proposal and gateway's authorization-bound proposal
 are distinct trace events for the same action, not duplicate dispatches.
 
-## Operator verification
+## Integration verification
 
-Run in macOS Terminal with the existing approved Docker installation:
+Follow [local setup](setup.md) and set the test socket and immutable image ID:
 
 ```sh
-cd /Users/nishantsingh/Documents/code/agentforge
-.venv/bin/python scripts/verify_af008.py
+python -m pytest tests/integration/test_sandbox_integration.py -ra
 ```
 
-Require `VERIFIED: 4 passed, zero skipped`. The script uses the saved approved
-socket/image, saves command/exit/log/XML under docs/verification/AF-008-real-<time>,
-and rejects missing/skipped/failed cases. It does not install/pull/change permissions.
-AF-005's older verifier now explicitly selects its original three checks so the new
-AF-008 test does not change its expected test count.
+Require zero skips. These tests execute disposable fixtures; unit tests using
+mocked transports verify dispatch logic separately.

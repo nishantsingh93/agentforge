@@ -1,83 +1,103 @@
-# Setup and offline smoke
+# Local setup and first evaluation
 
-Install the full source checkout following [contributing](contributing.md).
-The benchmark and proposal-only adapter demo need no Docker. Scenario execution
-requires an explicitly selected, reviewed local Linux-container Docker daemon.
-No real production endpoint or model credential is needed or supported by the CLI.
+Install the full source checkout using the [README](../README.md#get-started).
+Scenario execution requires Python 3.12+ and a dedicated local Docker daemon
+running Linux containers. The benchmark and proposal-only demo do not need Docker.
 
-## Configure a disposable Docker environment
+## 1. Select your local Docker socket
 
-Use a dedicated local environment with no sensitive host data or credentials.
-On macOS, the existing optional `scripts/setup_local_sandbox.py` helper provisions
-an isolated Colima profile; it installs software and pulls a public image, so review
-[its scope](local-sandbox-setup.md) before deliberately running it. It is not part of
-package installation. On Linux, install/configure Docker through your normal operator
-process; never weaken socket permissions or use a shared production daemon.
+Use a disposable development environment without sensitive data. Docker installation
+is managed separately through your platform's normal setup process. Do not select
+a shared production daemon or change socket permissions to bypass an access error.
 
-The existing tool-image provisioning helper requires a reviewed local base image.
-For a new local setup, these are explicit operator provisioning actions with network
-access; fixture execution itself remains network-disabled:
+On Linux, a common socket is:
 
 ```sh
-export AGENTFORGE_TEST_DOCKER_HOST=unix:///var/run/docker.sock
-export AGENTFORGE_TEST_IMAGE=python@sha256:935c3c5b12357a7e10caa9c1e6ca5692344d97cf229832ef584be2cec9fc03df
-mkdir -p runs/setup
-docker --host "$AGENTFORGE_TEST_DOCKER_HOST" pull "$AGENTFORGE_TEST_IMAGE"
-python -c 'import json, os; from pathlib import Path; Path("runs/setup/base.json").write_text(json.dumps({k: os.environ[k] for k in ("AGENTFORGE_TEST_DOCKER_HOST", "AGENTFORGE_TEST_IMAGE")}))'
-python scripts/provision_af009.py --settings runs/setup/base.json --verify
+export AGENTFORGE_DOCKER_HOST=unix:///var/run/docker.sock
 ```
 
-The example Unix socket is the common Linux location; macOS/rootless setups must
-use their actual canonical local socket. Do not copy this workstation's socket or
-locally built image ID to another machine. The base digest and tool pins are fixed
-in the reviewed Dockerfile; unavailable architecture or stale pins must be reviewed,
-not silently changed. The helper prints a **new settings.json path** and verifies
-runtime tools. Read that file to set the test socket and newly built `sha256:...`
-image ID, then run all integration tests from the contributor guide. The helper's
-own eight-test check is not the entire integration suite.
-
-## Run F01/F04 and render reports
-
-After selecting the newly provisioned settings values:
+On macOS or rootless Linux, use the actual local Unix socket for your dedicated
+Docker environment. Resolve symlinks to the canonical socket path. AgentForge
+requires an explicit local socket; it does not silently use your current context.
 
 ```sh
-export AGENTFORGE_DOCKER_HOST="$AGENTFORGE_TEST_DOCKER_HOST"
-export AGENTFORGE_IMAGE="$AGENTFORGE_TEST_IMAGE"
+docker --host "$AGENTFORGE_DOCKER_HOST" info
+```
+
+Verify that this is your intended local Linux-container daemon before continuing.
+
+## 2. Build the tooling image
+
+From the repository root:
+
+```sh
+mkdir -p runs/setup/docker-config
+docker --host "$AGENTFORGE_DOCKER_HOST" --config "$PWD/runs/setup/docker-config" build \
+  --iidfile "$PWD/runs/setup/image-id.txt" scripts/tool-image
+export AGENTFORGE_IMAGE="$(cat runs/setup/image-id.txt)"
+```
+
+The Dockerfile pins its base image and tooling versions. Its wheel-lock helper
+records hashes and installs the resolved artifacts using those hashes. Building
+needs network access to fetch public packages; fixture execution is network-disabled.
+The resulting `sha256:…` image ID is the immutable local identity used for runs.
+Keep the ID with your results. Runtime preflight verifies the selected image and
+never pulls a replacement or installs missing tools.
+
+If the base image is unavailable for your architecture, stop and review the image
+requirements. Do not replace a pinned identity with an arbitrary mutable tag.
+
+## 3. Run a correct smoke evaluation
+
+```sh
 python -m agentforge run --suite smoke --offline
 ```
 
-The correct offline smoke exits **4** (inconclusive semantic evaluation), with
-Bullseye outcomes and UNKNOWN judge scores. In a script, check specifically for 4;
-do not use `|| true`, which would hide infrastructure failures. A deliberately
-flawed demo should exit 1:
+Expected: F01/F04 Bullseye outcomes, quality INCOMPLETE, final UNKNOWN, exit **4**.
+Offline judges have no semantic model evidence. Exit 4 is intentional; an error
+from Docker is exit 3 and should be investigated separately.
+
+## 4. Run the deliberately flawed adapter
 
 ```sh
 python -m agentforge run --scenario F04 --agent demo-patcher-flawed --offline
 ```
 
-The run prints `Summary: runs/suite-.../summary.json`. Use that suite ID below:
+Expected: test-integrity violation, Misleading outcome, final FAIL, exit **1**.
+The test change happens in the disposable fixture, not your checkout.
+
+## 5. Inspect the report
+
+Copy the suite ID printed by the command, replacing `YOUR_SUITE_ID`:
 
 ```sh
-python -m agentforge report suite-ID --format html > runs/report.html
-python -m agentforge report suite-ID --format json > runs/report.json
-python -m agentforge compare baseline-suite-ID current-suite-ID > runs/comparison.json
+python -m agentforge report YOUR_SUITE_ID --format html > runs/report.html
+python -m agentforge report YOUR_SUITE_ID --format json > runs/report.json
 ```
 
-Replace IDs with observed output; do not overwrite any input artifact. Reports need
-no live Docker daemon. Preserve the full run directories for digest-linked evidence.
-There is no publish/deploy command. F05/F08 and other seeds have tested Python
-oracles/simulator behavior; the shipped scripted CLI adapter repairs F01/F04 only.
-The broader five-step v0.1 product demo is not fully exposed through this CLI.
+Open the HTML file in your browser. Preserve the source run directory for trace
+and digest-linked evidence. Reports can be rendered after Docker is stopped.
+
+## 6. Verify your installation with real integrations
+
+```sh
+export AGENTFORGE_TEST_DOCKER_HOST="$AGENTFORGE_DOCKER_HOST"
+export AGENTFORGE_TEST_IMAGE="$AGENTFORGE_IMAGE"
+python -m pytest tests/integration -ra
+```
+
+Require zero skips when claiming real integration verification. Without explicit
+test settings Docker tests skip; with settings present but unavailable, they fail.
 
 ## Troubleshooting
 
-- Missing dependencies or setuptools: use the approved package index/cache and
-  rerun install/build. Old archives do not verify changed source.
-- Docker preflight fails: check the explicitly selected local socket, Linux daemon,
-  reviewed image availability and exact digest. Do not retry through another daemon.
-- Integration skips: supply the explicit test settings and require zero skips.
-- Cleanup uncertain: retain the named `agentforge-...` container ID and stop runs;
-  have the operator inspect only that disposable resource. Do not globally prune.
-- Unknown model provider: use `--offline`; the CLI has no network provider transport.
-- Claim says PASS but verdict is UNKNOWN/FAIL: inspect actual commands, oracles,
-  hashes and policy events. A claim or model score cannot override these observations.
+| Symptom | What to check |
+| --- | --- |
+| Docker preflight fails | Explicit canonical local socket, daemon availability, Linux containers and image ID. |
+| Required tool is missing | Build the tooling Dockerfile; a plain Python image lacks the fixture tools. |
+| Integration tests skip | Set both `AGENTFORGE_TEST_*` variables. |
+| Final decision is UNKNOWN | Expected in offline mode; inspect observed outcomes and checks separately. |
+| Unsupported scenario/agent | CLI patch demos cover F01/F04; use the Python API for custom adapters. |
+| Cleanup is uncertain | Stop new runs and inspect only the named disposable container; do not globally prune. |
+
+See [run semantics](runs.md), [reporting](reporting.md) and [security boundaries](security.md).

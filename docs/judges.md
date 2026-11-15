@@ -1,4 +1,4 @@
-# Evidence-grounded judges (AF-011)
+# Evidence-grounded judges
 
 `evaluate_judges` evaluates the rubric's five dimensions through a shared strict
 boundary and five distinct, versioned prompts. It returns `JudgeEvaluation`

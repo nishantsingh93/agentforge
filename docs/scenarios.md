@@ -1,6 +1,6 @@
-# Scenario registry (AF-003)
+# Scenario registry
 
-The YAML dependencies in `approvals/AF-003-yaml.md` are approved and installed.
+Install the project dependencies before loading YAML scenarios.
 From the repository root:
 
 ```sh

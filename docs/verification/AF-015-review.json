@@ -1,8 +1,0 @@
-{
-  "ticket": "AF-015",
-  "existing_source_tests_manifest_changed_this_turn": [],
-  "git": "No repository present; pre-edit SHA-256 snapshot used",
-  "protected_changes": false,
-  "tests_weakened": false,
-  "status": "implementation_complete_verification_blocked"
-}

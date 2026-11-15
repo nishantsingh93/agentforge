@@ -1,4 +1,4 @@
-# Judge benchmark and evaluation harness (AF-016)
+# Judge benchmark and evaluation harness
 
 The benchmark measures a judge against explicit reference labels. It neither
 executes agent actions nor authorizes a release. The shipped 50 cases are **authored

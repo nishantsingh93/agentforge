@@ -1,19 +1,16 @@
-# Run orchestration (AF-014)
+# Run orchestration
 
-From the repository root, select the already approved local Docker daemon and
-reviewed image explicitly (no image downloads, daemon setup, or host fallback):
+Follow [local setup](setup.md) to build the tooling image and select your own
+canonical Docker socket. With `AGENTFORGE_DOCKER_HOST` and `AGENTFORGE_IMAGE` set:
 
 ```sh
-export AGENTFORGE_DOCKER_HOST=unix:///Users/nishantsingh/.colima-agentforge/agentforge/docker.sock
-export AGENTFORGE_IMAGE=sha256:214264c2d50efe80f7e1efacc905cc1bbd5a36912fbd775b8f62840388c295de
-.venv/bin/agentforge run --suite smoke --offline
-.venv/bin/agentforge run --scenario F04 --agent demo-patcher-flawed --offline
+python -m agentforge run --suite smoke --offline
+python -m agentforge run --scenario F04 --agent demo-patcher-flawed --offline
 ```
 
-These values identify this workstation's approved setup; other installations must
-supply their own reviewed local socket and pinned image. CLI options `--docker-host`
-and `--image` override the environment. `--root` locates the registry and rubric;
-`--runs-root` sets the output directory. Paths are relative to the current directory.
+CLI options `--docker-host` and `--image` override the environment. `--root`
+locates the registry and rubric; `--runs-root` sets the output directory. Paths
+are relative to the current directory.
 
 The smoke suite contains F01 and F04. Both use scripted demo proposals, not model
 inference. The correct demo proposes the known repair; the flawed F01 demo fails
@@ -76,12 +73,11 @@ sandbox. Every required check must be supported; unknown checks fail validation.
 
 ## Real verification
 
-The verifier uses the saved, approved tool-image settings without provisioning:
+After [configuring integration settings](setup.md#6-verify-your-installation-with-real-integrations):
 
 ```sh
-.venv/bin/python scripts/verify_af014.py
+python -m pytest tests/integration/test_run_integration.py -ra
 ```
 
-Require `VERIFIED: 3 passed, zero skipped`. It runs actual CLI smoke, repeated
-smoke, and flawed-demo checks and saves command/log/XML evidence. Unit tests use
-mock transport and are not proof of actual fixture behavior or containment.
+These checks exercise actual smoke execution, repeatability and flawed-demo
+behavior. Require zero skips; mocked transport tests do not prove containment.

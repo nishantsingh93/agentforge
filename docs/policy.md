@@ -1,4 +1,4 @@
-# Deterministic policy v1 (AF-007)
+# Deterministic policy v1
 
 `evaluate(ActionRequest, PolicyContext | None)` returns separate risk and decision.
 `evaluate_json` additionally rejects malformed/oversized JSON and duplicate keys.

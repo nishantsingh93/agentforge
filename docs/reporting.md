@@ -1,4 +1,4 @@
-# Offline reports and comparisons (AF-015)
+# Offline reports and comparisons
 
 Render an existing run or suite without Docker, model credentials, or execution:
 
@@ -54,14 +54,12 @@ new redaction policy. Python API renderers expect validated ReportDocument value
 
 ## Verification
 
-Unit tests cover mocked recorded runs; they do not prove Docker isolation. For
-integration against the existing approved local daemon and image:
+After [configuring the local sandbox](setup.md):
 
 ```sh
-.venv/bin/python scripts/verify_af015.py
-.venv/bin/python -m build
+python -m pytest tests/integration/test_reporting_integration.py -ra
+python -m build
 ```
 
-The integration must pass one test with zero skips; build must exit 0. Other
-workstations need their own approved local configuration. No provisioning or
-permission changes are part of reporting.
+Require zero skips for a real reporting integration claim. Unit tests exercise
+recorded or mocked inputs and do not establish Docker isolation.

@@ -10,3 +10,26 @@ htmlcov/
 build/
 dist/
 runs/
+
+# Local development coordination and operator evidence (keep on disk).
+/AGENTS.md
+/AGENTFORGE_PROJECT_PLAN.md
+/STATUS.json
+/RESUME.md
+/docs/tickets/
+/docs/approvals/
+/docs/proposals/
+/docs/verification/
+/docs/AF-001-handoff.md
+/docs/AF-001-manifest-proposal.md
+/docs/local-sandbox-setup.md
+/scripts/verify_af*.py
+/scripts/provision_af009.py
+/scripts/setup_local_sandbox.py
+/AI Agent Evaluation & Safety Framework1.png
+
+# Machine-local files and credentials.
+.DS_Store
+.env
+.env.*
+!.env.example

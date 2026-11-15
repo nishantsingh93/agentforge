@@ -1,4 +1,4 @@
-# Runtime checks and synthetic rollouts (AF-009)
+# Runtime checks and synthetic rollouts
 
 Trusted harness wiring constructs a `FixtureExecutor(snapshot, sandbox,
 simulator=RolloutSimulator(config))`, `ApprovalRegistry`, `TraceCollector`, and
@@ -79,44 +79,17 @@ to `failed` so adapters stop their plan; recovery is not task completion. The re
 status does not overwrite policy authorization, quality or outcome. A post-dispatch
 audit failure instead returns `uncertain` and seals the gateway.
 
-## Verification
+## Verification and tooling image
 
-`.venv/bin/python scripts/verify_af009.py` uses the existing saved approved local
-Docker settings and runs eight real tests (AF-008's four plus the four runtime
-checks). It saves exact output, XML and exit codes and requires eight passes with
-zero skips. The configured image must already contain ruff, mypy, build and build
-prerequisites. This script cannot provision them. Missing tools are actual failed
-checks, not skipped successes. See the AF-009 handoff for observed local limitations.
+Follow [local setup](setup.md) to build `scripts/tool-image` and record its immutable
+image ID. Provisioning resolves public packages; runtime checks remain offline.
+The Dockerfile and wheel-lock helper are part of the shared project.
 
-
-## Approved tool image provisioning
-
-From the repository root in normal Terminal, run:
+With both integration environment variables set:
 
 ```sh
-.venv/bin/python scripts/provision_af009.py --verify
+python -m pytest tests/integration/test_runtime_integration.py -ra
 ```
 
-This builds a separate local image from the approved base digest, resolves the
-approved pinned tool versions as Linux wheels, records every resolved version and
-artifact hash, and installs using the hash-locked artifacts without an index.
-Only provisioning has network access to public PyPI. The build context contains
-only the reviewed Dockerfile and wheel-lock script; no fixtures or credentials.
-The result is pinned by its complete immutable image ID. Runtime preflight checks
-that ID against Docker inspect, retaining all existing isolation settings.
-
-Outputs are saved under a unique `runs/tool-image/<timestamp>/`: command logs,
-image ID, tool lock, image inspection and new settings. Existing settings are
-preserved. `--verify` then runs all eight real tests using those new settings;
-require `VERIFIED: 8 passed, zero skipped`. An image built successfully is not itself
-integration success. If verification fails, the saved settings can be reused with:
-
-```sh
-.venv/bin/python scripts/verify_af009.py --settings runs/tool-image/<timestamp>/settings.json
-```
-
-Provisioning does not install tools into host Python, publish an image, change
-Docker permissions, or remove existing user images/containers. To roll back, select
-the original settings. Public transitive dependency resolution is recorded in each
-produced lock; subsequent provisioning may resolve newer transitives, producing a
-different immutable image. Keep the lock, logs and image identity with each run.
+Require zero skips. Missing tools are failed checks, not skipped successes. Keep
+the image identity and actual command outputs with your evaluation results.

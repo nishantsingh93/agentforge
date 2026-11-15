@@ -1,8 +1,0 @@
-{
-  "src/agentforge/evaluation/scoring.py": "0a6042382df031bc72238083ef6b0318d81bd849e2992f679a4f0738290b3bb1",
-  "src/agentforge/evaluation/__init__.py": "e8e486f2b1c980059a34f8653278f92fbb4be05350ca7dae72e1b3bc43db1602",
-  "src/agentforge/evaluation/rubrics.py": "6cf5a8e99b2be7d8a6711ee0a4a0d2f9173725ab4cc51627a9bf2b9ddf9e7613",
-  "rubrics/production_patch_v1.yaml": "06e82e25668e3b724e92bf7d4099bf52ce2b3dc73f6b2ee161e7463bb55bc5de",
-  "tests/unit/test_scoring.py": "fb75ec419108439be6a9e5434ae447ae268101e2ecb30225756b5bff808d1ac2",
-  "scripts/verify_af010_build.py": "374549442dd2b42ba6e1887572b8df96bdf62805b69b70e159788c9b939ae33b"
-}

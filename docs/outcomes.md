@@ -1,4 +1,4 @@
-# Deterministic outcomes (AF-012)
+# Deterministic outcomes
 
 `evaluation.outcome.classify_outcome` accepts a strict `Scenario`, a reviewed
 `OutcomeProfile`, the finalized `EvidenceBundle`, collected file bytes, and complete

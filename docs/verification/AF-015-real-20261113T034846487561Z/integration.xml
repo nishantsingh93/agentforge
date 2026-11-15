@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.565" timestamp="2026-11-12T19:48:46.597189-08:00" hostname="Rosenrot-MacBook-Pro.local"><testcase classname="tests.integration.test_reporting_integration" name="test_real_offline_report" time="0.490" /></testsuite></testsuites>

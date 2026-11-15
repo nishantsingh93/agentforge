@@ -1,4 +1,4 @@
-# Deterministic evaluation (AF-010)
+# Deterministic evaluation
 
 `agentforge.evaluation` computes read-only evaluation results. It does not authorize
 or execute actions and does not produce semantic judgments. Quality, supplied
