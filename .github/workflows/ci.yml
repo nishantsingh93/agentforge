@@ -154,7 +154,9 @@ jobs:
       - name: Audit installed dependencies without automatic fixes
         run: |
           mkdir -p artifacts
-          python -m pip_audit --strict --skip-editable --format json --output artifacts/dependency-audit.json
+          # Remove only the unpublished project; pip retains its installed dependencies.
+          python -m pip uninstall --yes agentforge
+          python -m pip_audit --strict --format json --output artifacts/dependency-audit.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()
         with:
